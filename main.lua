@@ -371,6 +371,16 @@ end
 -- ---------------------------------------------------------------
 function love.update(dt)
     dt = math.min(dt, 0.05)
+
+    -- Music switching based on gameState
+    if gameState == STATE.MENU then
+        gameMusic:stop()
+        menuMusic:play()
+    elseif gameState == STATE.PLAYING then
+        menuMusic:stop()
+        gameMusic:play()
+    end
+
     if gameState ~= STATE.PLAYING then return end
 
     if btnHeld.boost then player:boost() end
@@ -408,16 +418,7 @@ function love.update(dt)
         scoreTracker:finalize()
         gameState = STATE.GAMEOVER
     end
-
-    if gameState == STATE.MENU then
-        gameMusic:stop()
-        menuMusic:play()
-    elseif gameState == STATE.PLAYING then
-        menuMusic:stop()
-        gameMusic:play()
-    end
 end
-
 -- ---------------------------------------------------------------
 -- drawBackground  –  lucht + heuvels (ALLEEN boven GROUND_Y)
 -- Gebruikt thema kleuren van het huidige level
