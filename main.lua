@@ -408,6 +408,15 @@ function love.update(dt)
         scoreTracker:finalize()
         gameState = STATE.GAMEOVER
     end
+
+    if gameState == STATE.MENU then
+        gameMusic:stop()
+        menuMusic:play()
+    end
+    if gameState == STATE.PLAYING then
+        menuMusic:stop()
+        gameMusic:play()
+    end
 end
 
 -- ---------------------------------------------------------------
