@@ -50,28 +50,28 @@ local COLORS = {
 -- Grootte variaties per type (min/max multipliers)
 local SIZE_VARIANTS = {
     -- Stad - standaard variatie
-    rock    = { wMin = 0.8, wMax = 1.4, hMin = 0.7, hMax = 1.3 },
-    barrel  = { wMin = 0.7, wMax = 1.0, hMin = 0.9, hMax = 1.4 },
-    barrier = { wMin = 1.0, wMax = 2.0, hMin = 0.6, hMax = 1.0 },
-    -- Woestijn - cactus groot, tumbleweed klein
-    cactus     = { wMin = 0.9, wMax = 1.5, hMin = 1.1, hMax = 1.8 },
-    tumbleweed = { wMin = 0.5, wMax = 0.9, hMin = 0.5, hMax = 0.9 },
-    -- Bos - bomen groot, paddenstoelen klein
-    tree     = { wMin = 1.0, wMax = 1.6, hMin = 1.2, hMax = 2.0 },
-    log      = { wMin = 1.2, wMax = 2.0, hMin = 0.4, hMax = 0.7 },
-    mushroom = { wMin = 0.4, wMax = 0.8, hMin = 0.5, hMax = 0.9 },
-    -- Sneeuw - sneeuwpop groot, pinguin klein
-    snowman  = { wMin = 0.8, wMax = 1.3, hMin = 1.0, hMax = 1.6 },
-    iceberg  = { wMin = 1.2, wMax = 2.0, hMin = 0.9, hMax = 1.4 },
-    penguin  = { wMin = 0.5, wMax = 0.8, hMin = 0.6, hMax = 1.0 },
-    -- Ruimte - variabel
-    meteor   = { wMin = 0.7, wMax = 1.5, hMin = 0.7, hMax = 1.5 },
-    alien    = { wMin = 0.6, wMax = 1.0, hMin = 0.8, hMax = 1.3 },
-    crater   = { wMin = 1.0, wMax = 2.0, hMin = 0.3, hMax = 0.6 },
-    -- Vulkaan - lavarots groot, vuurbal klein
-    lavarock = { wMin = 1.0, wMax = 1.8, hMin = 0.9, hMax = 1.5 },
-    fireball = { wMin = 0.5, wMax = 1.0, hMin = 0.5, hMax = 1.0 },
-    crack    = { wMin = 1.5, wMax = 2.5, hMin = 0.3, hMax = 0.5 },
+    rock    = { wMin = 0.7, wMax = 1.1, hMin = 0.6, hMax = 1.0 },
+    barrel  = { wMin = 0.6, wMax = 0.9, hMin = 0.7, hMax = 1.1 },
+    barrier = { wMin = 0.9, wMax = 1.5, hMin = 0.5, hMax = 0.8 },
+    -- Woestijn - cactus iets groter, tumbleweed klein
+    cactus     = { wMin = 0.7, wMax = 1.1, hMin = 0.9, hMax = 1.3 },
+    tumbleweed = { wMin = 0.5, wMax = 0.8, hMin = 0.5, hMax = 0.8 },
+    -- Bos - bomen normaal, paddenstoelen klein
+    tree     = { wMin = 0.8, wMax = 1.2, hMin = 0.9, hMax = 1.3 },
+    log      = { wMin = 1.0, wMax = 1.5, hMin = 0.4, hMax = 0.6 },
+    mushroom = { wMin = 0.4, wMax = 0.7, hMin = 0.5, hMax = 0.8 },
+    -- Sneeuw - sneeuwpop normaal, pinguin klein
+    snowman  = { wMin = 0.7, wMax = 1.0, hMin = 0.8, hMax = 1.2 },
+    iceberg  = { wMin = 1.0, wMax = 1.4, hMin = 0.7, hMax = 1.0 },
+    penguin  = { wMin = 0.5, wMax = 0.7, hMin = 0.5, hMax = 0.8 },
+    -- Ruimte - variabel maar kleiner
+    meteor   = { wMin = 0.6, wMax = 1.1, hMin = 0.6, hMax = 1.1 },
+    alien    = { wMin = 0.5, wMax = 0.9, hMin = 0.7, hMax = 1.0 },
+    crater   = { wMin = 1.0, wMax = 1.5, hMin = 0.3, hMax = 0.5 },
+    -- Vulkaan - kleiner gemaakt
+    lavarock = { wMin = 0.8, wMax = 1.3, hMin = 0.7, hMax = 1.1 },
+    fireball = { wMin = 0.5, wMax = 0.8, hMin = 0.5, hMax = 0.8 },
+    crack    = { wMin = 1.2, wMax = 1.8, hMin = 0.3, hMax = 0.4 },
 }
 
 -- Speciale bewegings-types

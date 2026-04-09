@@ -204,18 +204,19 @@ local function handlePress(sx, sy)
         local py = (CFG.GROUND_Y - ph) / 2 - 20
         
         -- Check level selectie boxes
-        local lvlY = py + 135
-        local lvlW = 120
-        local lvlH = 35
-        local lvlSpacingY = 10
+        local lvlY = py + 140
+        local lvlW = 150
+        local lvlH = 40
+        local lvlSpacingX = 15
+        local lvlSpacingY = 12
         local cols = 3
-        local startX = px + (pw - cols * lvlW - (cols-1) * 10) / 2
+        local startX = px + (pw - cols * lvlW - (cols-1) * lvlSpacingX) / 2
         
         local clickedLevel = nil
         for i = 1, Levels.getTotalLevels() do
             local col = (i-1) % cols
             local row = math.floor((i-1) / cols)
-            local lx = startX + col * (lvlW + 10)
+            local lx = startX + col * (lvlW + lvlSpacingX)
             local ly = lvlY + row * (lvlH + lvlSpacingY)
             
             if mx >= lx and mx <= lx + lvlW and my >= ly and my <= ly + lvlH then
@@ -230,7 +231,7 @@ local function handlePress(sx, sy)
         end
         
         -- Check auto selectie boxes
-        local carY = py + 290
+        local carY = py + 295
         local carW = 110
         local carH = 70
         local carCols = 6
@@ -673,17 +674,18 @@ local function drawMenu()
     love.graphics.printf("KIES LEVEL", px, py+100, pw, "center")
     
     love.graphics.setFont(fontSmall)
-    local lvlY = py + 135
-    local lvlW = 120
-    local lvlH = 35
-    local lvlSpacingY = 10
+    local lvlY = py + 140
+    local lvlW = 150
+    local lvlH = 40
+    local lvlSpacingX = 15
+    local lvlSpacingY = 12
     local cols = 3
-    local startX = px + (pw - cols * lvlW - (cols-1) * 10) / 2
+    local startX = px + (pw - cols * lvlW - (cols-1) * lvlSpacingX) / 2
     
     for i, lvl in ipairs(Levels.data) do
         local col = (i-1) % cols
         local row = math.floor((i-1) / cols)
-        local lx = startX + col * (lvlW + 10)
+        local lx = startX + col * (lvlW + lvlSpacingX)
         local ly = lvlY + row * (lvlH + lvlSpacingY)
         
         -- Achtergrond (highlight als geselecteerd)
@@ -698,15 +700,15 @@ local function drawMenu()
         end
         
         -- Level nummer en naam
-        love.graphics.printf(tostring(i) .. ". " .. lvl.name, lx, ly + 8, lvlW, "center")
+        love.graphics.printf(tostring(i) .. ". " .. lvl.name, lx, ly + 10, lvlW, "center")
     end
     
     -- Auto selectie
     love.graphics.setFont(fontMed)
     love.graphics.setColor(1, 0.88, 0.15, 1)
-    love.graphics.printf("KIES AUTO", px, py+255, pw, "center")
+    love.graphics.printf("KIES AUTO", px, py+260, pw, "center")
     
-    local carY = py + 290
+    local carY = py + 295
     local carW = 110
     local carH = 70
     local carCols = 6
