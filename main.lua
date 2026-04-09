@@ -177,17 +177,17 @@ function love.load()
     gameState = STATE.MENU
     initGame()
 
+    menuMusic = love.audio.newSource("moonlight.mp3", "stream")
+    gameMusic = love.audio.newSource("playing.mp3", "stream")
+    menuMusic:setLooping(true)
+    gameMusic:setLooping(true)
 
     if gameState == STATE.MENU then
         gameMusic:stop()
-        menuMusic = love.audio.newSource( 'music/moonlight.mp3', 'stream' )
-        menuMusic:setLooping( true ) --Loop
         menuMusic:play()
     end
     if gameState == STATE.PLAYING then
         menuMusic:stop()
-        gameMusic = love.audio.newSource( 'music/playing.mp3', 'stream' )
-        gameMusic:setLooping( true ) --Loop
         gameMusic:play()
     end
     
