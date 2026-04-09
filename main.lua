@@ -409,6 +409,12 @@ local function drawBackground()
     love.graphics.setColor(theme.skyBottom)
     love.graphics.rectangle("fill", 0, gy * 0.5, CFG.SCREEN_WIDTH, gy * 0.5)
 
+    -- Zon voor alle levels behalve ruimte
+    if currentLevelData and currentLevelData.name ~= "RUIMTE" then
+        love.graphics.setColor(1, 0.9, 0.3, 1)  -- Gele zon
+        love.graphics.circle("fill", CFG.SCREEN_WIDTH * 0.8, gy * 0.2, 80)  -- Stilstaande zon rechtsboven
+    end
+
     -- Heuvels: clip strikt boven GROUND_Y
     -- Verre laag
     love.graphics.setColor(theme.hillFar)
