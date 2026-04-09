@@ -176,6 +176,18 @@ function love.load()
     setupButtons()
     gameState = STATE.MENU
     initGame()
+
+
+    if gameState == STATE.MENU then
+        music = love.audio.newSource( 'music/moonlight.mp3', 'stream' )
+        music:setLooping( true ) --Loop
+        music:play()
+    elseif gameState == STATE.PLAYING then
+        music = love.audio.newSource( 'music/playing.mp3', 'stream' )
+        music:setLooping( true ) --Loop
+        music:play()
+    end
+    
 end
 
 -- ---------------------------------------------------------------
