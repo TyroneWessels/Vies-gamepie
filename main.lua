@@ -198,21 +198,6 @@ function love.load()
     updateMusicPlayback()
 end
 
--- ---------------------------------------------------------------
--- love.resize  –  herbereken schaal bij venstergrootte wijziging
--- ---------------------------------------------------------------
-function love.resize(w, h)
-    updateScale()
-end
-
--- ---------------------------------------------------------------
--- Input helpers
--- ---------------------------------------------------------------
-local function pointInBtn(btn, mx, my)
-    return mx >= btn.x and mx <= btn.x+btn.w
-       and my >= btn.y and my <= btn.y+btn.h
-end
-
 local function updateMusicPlayback()
     if not musicOn then
         menuMusic:stop()
@@ -232,6 +217,21 @@ local function updateMusicPlayback()
         menuMusic:stop()
         if not gameMusic:isPlaying() then gameMusic:play() end
     end
+end
+
+-- ---------------------------------------------------------------
+-- love.resize  –  herbereken schaal bij venstergrootte wijziging
+-- ---------------------------------------------------------------
+function love.resize(w, h)
+    updateScale()
+end
+
+-- ---------------------------------------------------------------
+-- Input helpers
+-- ---------------------------------------------------------------
+local function pointInBtn(btn, mx, my)
+    return mx >= btn.x and mx <= btn.x+btn.w
+       and my >= btn.y and my <= btn.y+btn.h
 end
 
 local function handlePress(sx, sy)
