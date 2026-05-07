@@ -128,7 +128,7 @@ local function setupButtons()
     BTN.music = {
         x = CFG.SCREEN_WIDTH - btnSize * 2 - margin * 1.5,
         y = centerY, w = btnSize, h = btnSize,
-        label = "MUSIEK",
+        label = "TURN ON",
         color = { 0.14, 0.48, 0.82 },
         colorHeld = { 0.35, 0.70, 1.0 },
         action = "toggleMusic",
