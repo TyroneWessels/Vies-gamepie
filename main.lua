@@ -171,6 +171,27 @@ local function initGame()
     end
 end
 
+local function updateMusicPlayback()
+    if not musicOn then
+        menuMusic:stop()
+        gameMusic:stop()
+        if BTN.music then BTN.music.label = "MUTE" end
+        return
+    end
+
+    if BTN.music then
+        BTN.music.label = "MUSIEK"
+    end
+
+    if gameState == STATE.MENU then
+        gameMusic:stop()
+        if not menuMusic:isPlaying() then menuMusic:play() end
+    elseif gameState == STATE.PLAYING then
+        menuMusic:stop()
+        if not gameMusic:isPlaying() then gameMusic:play() end
+    end
+end
+
 -- ---------------------------------------------------------------
 -- love.load
 -- ---------------------------------------------------------------
@@ -196,27 +217,6 @@ function love.load()
 
     musicOn = true
     updateMusicPlayback()
-end
-
-local function updateMusicPlayback()
-    if not musicOn then
-        menuMusic:stop()
-        gameMusic:stop()
-        if BTN.music then BTN.music.label = "MUTE" end
-        return
-    end
-
-    if BTN.music then
-        BTN.music.label = "MUSIEK"
-    end
-
-    if gameState == STATE.MENU then
-        gameMusic:stop()
-        if not menuMusic:isPlaying() then menuMusic:play() end
-    elseif gameState == STATE.PLAYING then
-        menuMusic:stop()
-        if not gameMusic:isPlaying() then gameMusic:play() end
-    end
 end
 
 -- ---------------------------------------------------------------
