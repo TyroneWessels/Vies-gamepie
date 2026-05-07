@@ -175,12 +175,12 @@ local function updateMusicPlayback()
     if not musicOn then
         menuMusic:stop()
         gameMusic:stop()
-        if BTN.music then BTN.music.label = "TOGGLE MUSIC" end
+        if BTN.music then BTN.music.label = "TOGGLE" end
         return
     end
 
     if BTN.music then
-        BTN.music.label = "TOGGLE MUSIC"
+        BTN.music.label = "TOGGLE"
     end
 
     if gameState == STATE.MENU then
