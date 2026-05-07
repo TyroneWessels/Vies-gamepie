@@ -128,7 +128,7 @@ local function setupButtons()
     BTN.music = {
         x = CFG.SCREEN_WIDTH - btnSize * 2 - margin * 1.5,
         y = centerY, w = btnSize, h = btnSize,
-        label = "TURN ON",
+        label = "TOGGLE MUSIC",
         color = { 0.14, 0.48, 0.82 },
         colorHeld = { 0.35, 0.70, 1.0 },
         action = "toggleMusic",
@@ -175,12 +175,12 @@ local function updateMusicPlayback()
     if not musicOn then
         menuMusic:stop()
         gameMusic:stop()
-        if BTN.music then BTN.music.label = "MUTE" end
+        if BTN.music then BTN.music.label = "TOGGLE MUSIC" end
         return
     end
 
     if BTN.music then
-        BTN.music.label = "MUSIEK"
+        BTN.music.label = "TOGGLE MUSIC"
     end
 
     if gameState == STATE.MENU then
