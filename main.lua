@@ -62,7 +62,8 @@ local STATE = { MENU="menu", PLAYING="playing", GAMEOVER="gameover", ENTER_NAME=
 local gameState, player, obstacleMgr, scoreTracker
 local roadOffset, bgOffset, hillOffsets, distanceTraveled
 local fontBig, fontMed, fontSmall
-local btnHeld = { jump=false, boost=false }
+local btnHeld = { jump=false, boost=false, toggleMusic=false }
+local musicOn = true
 local currentLevel, currentLevelData, levelProgress
 local selectedLevel = 1       -- Geselecteerd level in menu
 local playerName = ""         -- Naam voor leaderboard
@@ -120,6 +121,17 @@ local function setupButtons()
         color = { 0.75, 0.12, 0.08 },
         colorHeld = { 1.0, 0.28, 0.15 },
         action = "boost",
+        round = true
+    }
+
+    -- MUZIEK toggle knop
+    BTN.music = {
+        x = CFG.SCREEN_WIDTH - btnSize * 2 - margin * 1.5,
+        y = centerY, w = btnSize, h = btnSize,
+        label = "MUSIEK",
+        color = { 0.14, 0.48, 0.82 },
+        colorHeld = { 0.35, 0.70, 1.0 },
+        action = "toggleMusic",
         round = true
     }
 end
@@ -182,15 +194,8 @@ function love.load()
     menuMusic:setLooping(true)
     gameMusic:setLooping(true)
 
-    if gameState == STATE.MENU then
-        gameMusic:stop()
-        menuMusic:play()
-    end
-    if gameState == STATE.PLAYING then
-        menuMusic:stop()
-        gameMusic:play()
-    end
-    
+    musicOn = true
+    updateMusicPlayback()
 end
 
 -- ---------------------------------------------------------------
@@ -208,10 +213,38 @@ local function pointInBtn(btn, mx, my)
        and my >= btn.y and my <= btn.y+btn.h
 end
 
+local function updateMusicPlayback()
+    if not musicOn then
+        menuMusic:stop()
+        gameMusic:stop()
+        if BTN.music then BTN.music.label = "MUTE" end
+        return
+    end
+
+    if BTN.music then
+        BTN.music.label = "MUSIEK"
+    end
+
+    if gameState == STATE.MENU then
+        gameMusic:stop()
+        if not menuMusic:isPlaying() then menuMusic:play() end
+    elseif gameState == STATE.PLAYING then
+        menuMusic:stop()
+        if not gameMusic:isPlaying() then gameMusic:play() end
+    end
+end
+
 local function handlePress(sx, sy)
     -- Converteer schermcoördinaten naar game-coördinaten
     local mx, my = screenToGame(sx, sy)
     
+    if BTN.music and pointInBtn(BTN.music, mx, my) then
+        btnHeld.toggleMusic = true
+        musicOn = not musicOn
+        updateMusicPlayback()
+        return
+    end
+
     if gameState == STATE.MENU then
         local cx = CFG.SCREEN_WIDTH/2
         local pw, ph = 800, 580
@@ -290,8 +323,9 @@ local function handlePress(sx, sy)
 end
 
 local function handleRelease()
-    btnHeld.jump  = false
-    btnHeld.boost = false
+    btnHeld.jump        = false
+    btnHeld.boost       = false
+    btnHeld.toggleMusic = false
 end
 
 function love.mousepressed(mx, my, b)  if b==1 then handlePress(mx,my)   end end
@@ -306,6 +340,12 @@ function love.keypressed(key)
     if key == "f11" then
         love.window.setFullscreen(not love.window.getFullscreen(), "desktop")
         updateScale()
+        return
+    end
+
+    if key == "m" then
+        musicOn = not musicOn
+        updateMusicPlayback()
         return
     end
     
@@ -372,14 +412,7 @@ end
 function love.update(dt)
     dt = math.min(dt, 0.05)
 
-    -- Music switching based on gameState
-    if gameState == STATE.MENU then
-        gameMusic:stop()
-        menuMusic:play()
-    elseif gameState == STATE.PLAYING then
-        menuMusic:stop()
-        gameMusic:play()
-    end
+    updateMusicPlayback()
 
     if gameState ~= STATE.PLAYING then return end
 
